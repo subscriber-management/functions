@@ -1,8 +1,5 @@
-import {
-  isHttpError,
-  Status,
-} from 'https://deno.land/x/oak@v10.5.1/mod.ts';
-import { Middleware } from 'https://deno.land/x/oak@v10.5.1/middleware.ts';
+import { isHttpError, Status } from "https://deno.land/x/oak@v10.5.1/mod.ts";
+import { Middleware } from "https://deno.land/x/oak@v10.5.1/middleware.ts";
 
 const handleErrors: Middleware = async ({ response }, next) => {
   try {
@@ -12,7 +9,7 @@ const handleErrors: Middleware = async ({ response }, next) => {
       switch (error.status) {
         case Status.NotFound:
           response.body = {
-            error: 'not found',
+            error: "not found",
             status: error.status,
           };
           break;

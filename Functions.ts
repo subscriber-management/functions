@@ -1,8 +1,8 @@
-import { Middleware } from 'https://deno.land/x/oak@v10.5.1/middleware.ts';
+import { Middleware } from "https://deno.land/x/oak@v10.5.1/middleware.ts";
 
 export const resolvedRepoUrl = (identifier: string) => {
-  if (identifier.indexOf('github:') === 0) {
-    const ref = identifier.split('github:')[1];
+  if (identifier.indexOf("github:") === 0) {
+    const ref = identifier.split("github:")[1];
     return `https://raw.githubusercontent.com/${ref}`;
   } else {
     return identifier;
@@ -10,7 +10,7 @@ export const resolvedRepoUrl = (identifier: string) => {
 };
 
 export const executeFunction: Middleware = async ({ request, response }) => {
-  const { module, args } = await request.body({ type: 'json' }).value;
+  const { module, args } = await request.body({ type: "json" }).value;
   const importedModule = await import(resolvedRepoUrl(module));
 
   if (importedModule.default) {
